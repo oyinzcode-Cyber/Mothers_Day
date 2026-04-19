@@ -1,138 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Happy New Year 2026 | Dan-T</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Happy Mother's Day 💐</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Fireworks Library -->
-  <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.x/dist/index.umd.js"></script>
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0a3d91, #d4af37);
+    text-align: center;
+    color: #fff;
+    overflow-x: hidden;
+}
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #000428, #004e92);
-      color: white;
-      text-align: center;
-      overflow: hidden;
-    }
+/* TITLE */
+h1 {
+    margin-top: 25px;
+    font-size: 2.6em;
+    text-shadow: 0 0 20px gold;
+    line-height: 1.4;
+}
 
-    .container {
-      margin-top: 15vh;
-      z-index: 10;
-      position: relative;
-    }
+/* BUTTON */
+button {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 25px;
+    background: gold;
+    color: #0a3d91;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 8px;
+    font-weight: bold;
+}
 
-    input {
-      padding: 12px;
-      font-size: 16px;
-      border-radius: 6px;
-      border: none;
-      width: 250px;
-    }
+/* CIRCLE SLIDESHOW */
+.slideshow {
+    margin: 25px auto;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 6px solid gold;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+}
 
-    button {
-      padding: 12px 20px;
-      font-size: 16px;
-      border-radius: 6px;
-      border: none;
-      background: gold;
-      cursor: pointer;
-      margin-left: 5px;
-    }
+.slideshow img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-    h1 {
-      font-size: 2.5rem;
-      margin-top: 20px;
-    }
+/* 💎 GLASS GALLERY */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    max-width: 900px;
+    margin: auto;
+}
 
-    .logo {
-      position: fixed;
-      top: 15px;
-      left: 20px;
-      font-weight: bold;
-      font-size: 18px;
-      color: gold;
-    }
+.glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
 
-    /* Santa Animation */
-    .santa {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      width: 120px;
-      animation: bounce 2s infinite;
-    }
+.glass-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+}
 
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
+.glass-card:hover {
+    transform: scale(1.05);
+}
 
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-    }
-  </style>
+/* POPUP */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: linear-gradient(135deg, gold, #0a3d91);
+    padding: 25px;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px gold;
+}
+
+.close {
+    float: right;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* TEXT */
+#typeText {
+    min-height: 150px;
+}
+
+/* HEARTS */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 20px;
+    animation: floatUp linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+}
+
+/* FOOTER */
+footer {
+    margin-top: 40px;
+    padding: 15px;
+    background: rgba(0,0,0,0.25);
+    border-top: 1px solid gold;
+    font-size: 14px;
+}
+
+footer a {
+    color: gold;
+    text-decoration: none;
+    font-weight: bold;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="logo">🎉 Dan-T</div>
+<h1>💐 Happy Mother's Day 💐<br>Angela Mariae Okoli</h1>
 
-  <div class="container">
-    <input id="nameInput" placeholder="Enter your name">
-    <button onclick="generate()">Celebrate 🎆</button>
+<!-- 🎵 MUSIC -->
+<audio id="bgMusic" loop>
+    <source src="your-audio.mp3" type="audio/mpeg">
+</audio>
 
-    <h1 id="message"></h1>
-    <p id="shareLink"></p>
-  </div>
+<button onclick="toggleMusic()">▶ Play / Pause Music</button>
 
-  <!-- Santa -->
-  <img class="santa"
-       src="https://i.imgur.com/QrKQZ4G.gif"
-       alt="Santa Claus">
+<!-- 🖼️ MAIN SLIDESHOW -->
+<div class="slideshow">
+    <img id="slide">
+</div>
 
-  <!-- Music -->
-  <audio id="music" loop>
-    <source src="https://cdn.pixabay.com/audio/2022/12/22/audio_ebedc55b27.mp3" type="audio/mpeg">
-  </audio>
+<!-- 💎 GLASS IMAGE GALLERY -->
+<h2>💖 Memories Gallery</h2>
 
-  <!-- Fireworks Canvas -->
-  <canvas id="fireworks"></canvas>
+<div class="gallery">
+    <div class="glass-card"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1"></div>
+    <div class="glass-card"><img src="https://images.unsplash.com/photo-1508610048659-a06b669e3321"></div>
+    <div class="glass-card"><img src="https://images.unsplash.com/photo-1519682577862-22b62b24e493"></div>
+    <div class="glass-card"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"></div>
+</div>
 
-  <script>
-    const fireworks = new Fireworks.default(
-      document.getElementById('fireworks'),
-      { intensity: 30 }
-    );
+<!-- 💌 BUTTON -->
+<button onclick="openPopup()">💌 Open Heart Message</button>
 
-    function generate() {
-      const name = document.getElementById("nameInput").value.trim();
-      if (!name) return alert("Please enter your name");
+<!-- POPUP -->
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup()">✖</span>
+        <h2>To My Beautiful Mother 💖</h2>
+        <div id="typeText"></div>
+    </div>
+</div>
 
-      document.getElementById("message").innerHTML =
-        `🎆 Happy New Year 2026, <br><strong>${name}</strong>! 🎉<br>
-         May this year bring joy, success & peace.`;
+<script>
 
-      fireworks.start();
-      document.getElementById("music").play();
+// 🎵 MUSIC
+let music = document.getElementById("bgMusic");
 
-      const url = `${window.location.origin}${window.location.pathname}?name=${encodeURIComponent(name)}`;
-      document.getElementById("shareLink").innerHTML =
-        `🔗 Share your wish: <br><a href="${url}" style="color:gold">${url}</a>`;
+function toggleMusic() {
+    if (music.paused) music.play();
+    else music.pause();
+}
+
+// 🖼️ SLIDESHOW
+let images = [
+ "https://images.unsplash.com/photo-1524504388940-b1c1722653e1",
+ "https://images.unsplash.com/photo-1508610048659-a06b669e3321",
+ "https://images.unsplash.com/photo-1519682577862-22b62b24e493"
+];
+
+let i = 0;
+document.getElementById("slide").src = images[0];
+
+setInterval(() => {
+    i = (i + 1) % images.length;
+    document.getElementById("slide").src = images[i];
+}, 3000);
+
+// 💌 MESSAGE
+function openPopup() {
+    document.getElementById("popup").style.display = "flex";
+    document.getElementById("typeText").innerHTML = "";
+
+    let message =
+    `Dear Angela Mariae Okoli 💖\n\n` +
+    `You are the heart of our home.\n\n` +
+    `Your love is endless, your care is priceless.\n\n` +
+    `We are forever grateful for you.\n\n` +
+    `Happy Mother’s Day 💐❤️`;
+
+    let t = 0;
+
+    function typeWriter() {
+        if (t < message.length) {
+            document.getElementById("typeText").innerHTML += message.charAt(t);
+            t++;
+            setTimeout(typeWriter, 30);
+        }
     }
 
-    // Auto-load name from link
-    const params = new URLSearchParams(window.location.search);
-    const sharedName = params.get("name");
-    if (sharedName) {
-      document.getElementById("nameInput").value = sharedName;
-      generate();
-    }
-  </script>
+    typeWriter();
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
+// 💖 HEARTS
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+
+    const icons = ["💖","💛","💙","❤️","💕"];
+    heart.innerText = icons[Math.floor(Math.random() * icons.length)];
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+    heart.style.animationDuration = (Math.random() * 4 + 3) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 7000);
+}
+
+setInterval(createHeart, 300);
+
+</script>
+
+<footer>
+    © 2026 @SJCMSCHOOL | 
+    <a href="https://sjcmschool.online" target="_blank">sjcmschool.online</a>
+</footer>
 
 </body>
 </html>
